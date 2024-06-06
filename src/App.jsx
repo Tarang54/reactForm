@@ -1,35 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [name, setName] = useState("");
+  const [age, setAge] = useState();
+  const [phone, setPhone] = useState();
+  const [gender, setGender] = useState("");
+
+  const payload = {
+    name : {name},
+    age : {age},
+    phone : {phone},
+    gender : {gender}
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="w-full h-screen mx-auto items-center flex justify-center">
+        <form className="items-center w-full py-25 px-30 bg-orange-400 rounded-lg flex flex-col">
+          <input
+            className="bg-gray-200 px-5 py-2 text-xl rounded-md my-5 text-center"
+            type="text"
+            value={name}
+            placeholder="Name"
+            onChange={(e) => {
+              setName(e.target.value);
+              console.log(name);
+            }}
+          />
+          <input
+            className="bg-gray-200 px-5 py-2 text-xl rounded-md my-5 text-center"
+            type="number"
+            placeholder="Age"
+            value={age}
+            onChange={(e) => {
+              setAge(e.target.value);
+              console.log(age);
+            }}
+          />
+          <input
+            className="bg-gray-200 px-5 py-2 text-xl rounded-md my-5 text-center"
+            type="number"
+            value={phone}
+            placeholder="Phone"
+            onChange={(e) => {
+              setPhone(e.target.value);
+              console.log(phone);
+            }}
+          />
+          <select className="bg-gray-200 px-5 py-2 text-xl rounded-md my-5 text-center"
+          onChange={(e) => {
+            setGender(e.target.value);
+            console.log(gender);
+          }}>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <input
+            className="bg-gray-500 text-white px-40 py-2 text-xl rounded-md my-5 text-center cursor-pointer"
+            type="submit"
+            placeholder="Submit"
+            onClick={(e) => {
+              alert(JSON.stringify(payload));
+            }}
+          />
+        </form>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
